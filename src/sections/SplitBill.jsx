@@ -6,9 +6,10 @@ export default function SplitBill({ className="", selectedFriend, onUpdate }) {
 	const [myExpense, setMyExpense] = useState("")
 	const friendExpense = bill - myExpense;
 	const [payer, setPayer] = useState("you")
-	
+
 	function handleSubmit(event) {
 		event.preventDefault()
+		if(!bill || !myExpense) return
 		const newBalance = payer === "you" ? friendExpense : -myExpense;
 		onUpdate(newBalance)
 	}

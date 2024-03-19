@@ -39,15 +39,18 @@ function App() {
 	}
 
 	function handleSelection(friend) {
-		setSelectedFriend(cur => cur?.id === friend?.id ? null : friend)
-		setShowAddFriend(false)
+		setSelectedFriend((cur) => (cur?.id === friend?.id ? null : friend));
+		setShowAddFriend(false);
 	}
 
 	function handleUpdateFriend(newBalance) {
-		setFriendsList(cur => {
-			const restOfFriends = cur.filter(friend => friend.id !== selectedFriend.id);
-			return [...restOfFriends, {...selectedFriend, balance: newBalance}]
-		})
+		setFriendsList((cur) =>
+			cur.map((friend) =>
+				friend.id === selectedFriend.id
+					? { ...selectedFriend, balance: newBalance }
+					: friend
+			)
+		);
 	}
 	return (
 		<main className="flex flex-col gap-10 sm:flex-row font-sans border w-fit max-w-[50rem] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-xl rounded-md items-start">
@@ -58,12 +61,16 @@ function App() {
 					onSelection={handleSelection}
 				/>
 				{showAddFriend && <AddFriend onAddFriend={handleAddFriend} />}
-				<Button className="ml-auto mt-4" onClick={handleShowAddFriend}>
+				<Button className="m-3 ml-auto" onClick={handleShowAddFriend}>
 					{showAddFriend ? "Close" : "Add friend"}
 				</Button>
 			</div>
 			{selectedFriend && (
-				<SplitBill className="flex-1" selectedFriend={selectedFriend} onUpdate={handleUpdateFriend} />
+				<SplitBill
+					className="flex-1"
+					selectedFriend={selectedFriend}
+					onUpdate={handleUpdateFriend}
+				/>
 			)}
 		</main>
 	);
