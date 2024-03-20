@@ -70,6 +70,7 @@ function App() {
 				<SplitBill
 					className="flex-1"
 					selectedFriend={selectedFriend}
+					key={selectedFriend.id}
 					onUpdate={handleUpdateFriend}
 				/>
 			)}
