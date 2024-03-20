@@ -51,9 +51,10 @@ function App() {
 					: friend
 			)
 		);
+		setSelectedFriend(null)
 	}
 	return (
-		<main className="flex flex-col gap-10 sm:flex-row font-sans border w-fit max-w-[50rem] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-xl rounded-md items-start">
+		<main className="flex flex-col gap-4 sm:gap-10 sm:flex-row font-sans border w-fit max-w-[50rem] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-xl rounded-md items-start">
 			<div className="box flex-1">
 				<FriendsList
 					friendsList={friendsList}
